@@ -1,0 +1,24 @@
+<h1>Threads</h1>
+<p *ngIf="!threads"><em>Loading...</em></p>
+<table class='table' *ngIf="threads">
+  <thead>
+      <tr>
+          <th>Thread Title</th>
+          <th>Date Created</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let thread of threads">
+          <td>{{ thread.title }}</td>
+          <td>{{ thread.created }}</td>
+      </tr>
+  </tbody>
+</table>
+
+<input type="number" [(ngModel)]="threadToCreate.userId" class="form-control" placeholder="Thread OwnerId" aria-label="Thread OwnerId" aria-describedby="basic-addon2">
+<div class="input-group mb-3">
+  <input type="text" [(ngModel)]="threadToCreate.title" class="form-control" placeholder="Thread Name" aria-label="Thread Name" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)="createThread()">Create</button>
+  </div>
+</div>

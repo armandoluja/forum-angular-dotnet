@@ -1,0 +1,22 @@
+<p *ngIf="!post"><em>Loading...</em></p>
+
+<div *ngIf="post">
+  <h3>{{post.title}}</h3>
+  <div>{{post.content}}</div>
+  <br>
+  <div>
+    <div class="media" *ngFor="let comment of comments">
+      <img class="mr-3" src="..." alt="Generic image">
+      <div class="media-body">
+        <h5 class="mt-0">Created by userid: {{comment.userId}}</h5>
+        {{comment.content}}
+      </div>
+    </div>
+  </div>
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="commentToCreate.content" class="form-control" placeholder="Say something..." aria-label="Comment" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="addComment()">Comment</button>
+    </div>
+  </div>
+</div>

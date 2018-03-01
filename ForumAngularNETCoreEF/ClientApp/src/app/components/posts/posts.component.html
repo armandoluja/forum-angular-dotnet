@@ -1,0 +1,38 @@
+<h1>Posts</h1>
+<p *ngIf="!posts"><em>Loading...</em></p>
+<table class='table' *ngIf="posts">
+  <thead>
+      <tr>
+          <th>Post Title</th>
+          <th>Date Created</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let post of posts">
+          <td><a routerLink="/Posts/{{post.id}}">{{ post.title }}</a></td>
+          <td>{{ post.created }}</td>
+      </tr>
+  </tbody>
+</table>
+<form>
+  <div class="form-group">
+    <label for="newPostTitle">Title</label>
+    <input type="text" [(ngModel)]="postToCreate.title" id="newPostTitle" class="form-control" placeholder="Post Title" name="newPostTitle">
+  </div>
+  <div class="form-group">
+    <textarea [(ngModel)]="postToCreate.content" id="newPostContent" class="form-control"  rows="3" placeholder="Say something..." name="newPostContent"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="newPostUserId">Username</label>
+    <select *ngIf="users" class="form-control" [(ngModel)]="postToCreate.userId" id="newPostUserId" name="newPostUserId">
+      <option *ngFor="let user of users" value="{{user.id}}" >{{user.username}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="newPostThreadId">Thread</label>
+    <select *ngIf="threads" class="form-control" [(ngModel)]="postToCreate.threadId" id="newPostThreadId" name="newPostThreadId">
+      <option *ngFor="let thread of threads" value="{{thread.id}}" >{{thread.title}}</option>
+    </select>
+  </div>
+</form>
+<button class="btn btn-outline-secondary" type="button" (click)="createPost()">Create</button>

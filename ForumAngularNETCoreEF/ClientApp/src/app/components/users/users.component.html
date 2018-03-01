@@ -1,0 +1,24 @@
+<h1>Existing Users</h1>
+
+<p *ngIf="!users"><em>Loading...</em></p>
+
+<table class='table' *ngIf="users">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Date Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.created }}</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <label>
+        <input type="text" [(ngModel)]="userToCreate.username">
+    </label>
+    <button (click)="createUser()" >Create User</button>
+</div>
